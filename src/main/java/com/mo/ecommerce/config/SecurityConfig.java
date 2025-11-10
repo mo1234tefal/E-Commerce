@@ -16,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +33,7 @@ public class SecurityConfig {
         return http
                 .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(request->request
-                        .requestMatchers("/api/admin/**").hasAnyAuthority(Role.ADMIN.name())
+                        .requestMatchers("/api/admin/**").hasAnyAuthority(Role.ADMIN.name() , Role.SUPER_ADMIN.name())
                         .requestMatchers("/api/customer/**").hasAnyAuthority(Role.CUSTOMER.name())
                         .requestMatchers("/api/auth/**" , "/" ,"/dashboard").permitAll()
                         .anyRequest().authenticated()
