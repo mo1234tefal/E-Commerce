@@ -5,20 +5,16 @@ import com.mo.ecommerce.entity.User;
 import com.mo.ecommerce.enums.Role;
 import com.mo.ecommerce.repository.UserRepo;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class AuthService {
 
     private final  UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
-
-    public AuthService(UserRepo userRepo, PasswordEncoder passwordEncoder) {
-        this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
-    }
-
 
     public String signUp(SignupRequest signupRequest){
         User user = new User();
@@ -29,7 +25,7 @@ public class AuthService {
         userRepo.save(user);
         return "User added successfully";
     }
-    @PostConstruct
+//    @PostConstruct
     public void AddAdmin(){
         User adminAccount = userRepo.findByRole(Role.SUPER_ADMIN);
         if(adminAccount == null){
