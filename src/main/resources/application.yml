@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: Ecommerce_App
+    secret_key: Qk9PTEVTVklOQ0lCTERFRDNDUkVPTkVDT05USU5VTE9HT0xTTE5PTklUSU5GT0NFTExFTkNPSE9MRExFU0NQ
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce_db
+    username: root
+    password: M01020_619664t
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 9090
+
+
